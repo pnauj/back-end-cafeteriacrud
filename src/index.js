@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import path from "path";
+import router from "./routes/productos.route";
 
 //creo una constancia de express
 const app = express();
@@ -23,15 +24,14 @@ app.use(express.urlencoded({ extended: true }));
 //Aqui mostramos por defecto el index.html de la carpeta public
 app.use(express.static(path.join(__dirname, "../public")));
 
-//ruta de prueba
-app.get("/products", (req, res) => {
-  //lo que quiero que pase cuando se ejecute la consulta
-  res.send("hola desde el  backend");
-});
-app.get("/", (req, res) => {
-  //lo que quiero que pase cuando se ejecute la consulta
-  res.send("hola desde la ruta principal");
-});
+//aqui van las rutas
+app.use('/apicafe', router)
+
+
+
+
+
 
 // clase 14 de febrero
-// tiempo 0:58
+// tiempo 1:25
+
