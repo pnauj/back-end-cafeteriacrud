@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors"; 
+import path from "path";
 
 
 //creo una constancia de express
@@ -16,6 +17,13 @@ app.listen(app.get("port"), () => {
 //middlewares o configuraciones extras
 app.use(morgan('dev')); // informacion extra en la terminal
 app.use(cors()); // permite recibir peticiones externas
+// interpretar objetos en formatos JSON
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+
+//Aqui mostramos por defecto el index.html de la carpeta public
+app.use(express.static(path.join(__dirname, '../public')))
 
 
 //ruta de prueba
