@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import path from "path";
 import router from "./routes/productos.route";
+import './database'
 
 //creo una constancia de express
 const app = express();
@@ -32,6 +33,6 @@ app.use('/apicafe', router)
 
 
 
-// clase 14 de febrero
-// tiempo 1:25
+// clase 16 de febrero
+// tiempo 00:00:00
 

@@ -6,6 +6,10 @@ productoCtrl.listarProductos = (req, res) => {
     res.send('hola desde el backend2');
 };
 
+productoCtrl.crearProducto = (req, res) => {
 
+    console.log(req.body)
+    res.send('voy a crear un producto')
+}
 
 export default productoCtrl;
