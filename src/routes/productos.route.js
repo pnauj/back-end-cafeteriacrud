@@ -7,5 +7,7 @@ const router = Router();
 // crear la ruta 
 router.route('/products').get(productoCtrl.listarProductos).post(productoCtrl.crearProducto)
 
+router.route('/products/:id').get(productoCtrl.obtenerProducto)
+
 
 export default router;
