@@ -12,52 +12,80 @@ productoCtrl.listarProductos = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(404).json({
-            mensaje: 'Error al intentar agregar una lista'
-        })
+            mensaje: "Error al intentar agregar una lista",
+        });
     }
 };
 
 productoCtrl.crearProducto = async (req, res) => {
     try {
         console.log(req.body);
-        // validar 
+        // validar
         // crear productos en la base de datos
         const productoNuevo = new Producto({
             productName: req.body.productName,
             price: req.body.price,
             urlImg: req.body.urlImg,
-            category: req.body.category
-        })
+            category: req.body.category,
+        });
         // guardar el objeto nuevo en la base de datos
         await productoNuevo.save();
         //enviar respuesta
         res.status(201).json({
-            mensaje: 'producto correctamente creado'
-        })
-
+            mensaje: "producto correctamente creado",
+        });
     } catch (error) {
         console.log(error);
         //enviar codigo de error
         res.status(404).json({
-            mensaje: 'Error al intentar agregar un producto'
-        })
+            mensaje: "Error al intentar agregar un producto",
+        });
     }
-
-}
+};
 
 productoCtrl.obtenerProducto = async (req, res) => {
     try {
         //acceder al id
-        console.log(req.params.id)
+        console.log(req.params.id);
         // buscar el producto
-        const productoBuscado = await Producto.findById(req.params.id)
+        const productoBuscado = await Producto.findById(req.params.id);
         //enviar el producto por res
-        res.status(200).json(productoBuscado)
+        res.status(200).json(productoBuscado);
     } catch (error) {
         console.log(error);
         //enviar codigo de error
         res.status(404).json({
-            mensaje: 'Error no se pudo obtener el producto buscado'
+            mensaje: "Error no se pudo obtener el producto buscado",
+        });
+    }
+};
+
+productoCtrl.editarProducto = async (req, res) => {
+    try {
+        //agregar validacion
+        await Producto.findByIdAndUpdate(req.params.id, req.body);
+        res.status(200).json({
+            mensaje: "el producto fue editado exitosamente",
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({
+            mensaje: "Error al intentar editar un producto",
+        });
+    }
+};
+
+
+productoCtrl.borrarProducto = async (req, res) => {
+    try {
+        await Producto.findByIdAndDelete(req.params.id)
+        res.status(200).json({
+            mensaje: 'se pudo eliminar el producto correctamente'
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(404).json({
+            mensaje: "Error al intentar borrar un producto",
         });
     }
 }

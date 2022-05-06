@@ -7,5 +7,5 @@ mongoose.connect(url);
 const connection = mongoose.connection;
 
 connection.once('open', () =>{
-    console.log('bd conectada');
+    console.log('BD conectada');
 })

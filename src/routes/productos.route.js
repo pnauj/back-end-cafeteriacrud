@@ -4,10 +4,16 @@ import productoCtrl from "../controllers/productos.controllers";
 
 const router = Router();
 
-// crear la ruta 
-router.route('/products').get(productoCtrl.listarProductos).post(productoCtrl.crearProducto)
+// crear la ruta
+router
+  .route("/products")
+  .get(productoCtrl.listarProductos)
+  .post(productoCtrl.crearProducto);
 
-router.route('/products/:id').get(productoCtrl.obtenerProducto)
-
+router
+  .route("/products/:id")
+  .get(productoCtrl.obtenerProducto)
+  .put(productoCtrl.editarProducto)
+  .delete(productoCtrl.borrarProducto);
 
 export default router;
